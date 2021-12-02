@@ -1,5 +1,5 @@
 const { readFileSync } = require('fs');
-const data = readFileSync('./q2-data.txt', 'utf8').split(/\r?\n/);
+const data = readFileSync('./data/day2.txt', 'utf8').split(/\r?\n/);
 
 // Part 1
 let pos = 0;
@@ -20,7 +20,7 @@ for (const entry of data) {
         } break;
     }
 }
-
+console.log('\n\n=== PART 1 ===');
 console.log(`Final Position: ${pos}`);
 console.log(`Final Depth: ${depth}`);
 console.log(`Part 1 Answer: ${pos * depth}`);
@@ -46,7 +46,7 @@ for (const entry of data) {
         } break;
     }
 }
-
+console.log('\n\n=== PART 2 ===');
 console.log(`Final Position: ${pos}`);
 console.log(`Final Depth: ${depth}`);
 console.log(`Part 1 Answer: ${pos * depth}`);

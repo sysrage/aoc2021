@@ -608,37 +608,47 @@ const addLine = (start, end, diagonal) => {
     }
 };
 
-// Add all horizontal and vertical lines to sea floor -- Part 1
-for (const line of lines) {
-    addLine(line.start, line.end);
-}
+const wait = (waitTime) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(resolve, waitTime);
+    });
+};
 
-// Search for line intersections -- Part 1
-let intersections = 0;
-for (const row of seaFloor) {
-    const rowIntersections = row.reduce((a, v) => (v > 1 ? a += 1 : a), 0);
-    intersections += rowIntersections;
-}
+(async () => {
+    // Add all horizontal and vertical lines to sea floor -- Part 1
+    for (const line of lines) {
+        addLine(line.start, line.end);
+        await wait(5);
+    }
 
-console.log('\n\n=== PART 1 ===');
-console.log(`Intersection Points: ${intersections}`);
-seaFloorCtx.fillText(`Intersection Points: ${intersections}`, 10, 50);
+    // Search for line intersections -- Part 1
+    let intersections = 0;
+    for (const row of seaFloor) {
+        const rowIntersections = row.reduce((a, v) => (v > 1 ? a += 1 : a), 0);
+        intersections += rowIntersections;
+    }
+
+    console.log('\n\n=== PART 1 ===');
+    console.log(`Intersection Points: ${intersections}`);
+    seaFloorCtx.fillText(`Intersection Points: ${intersections}`, 10, 50);
 
 
-// Add all diagonal lines to sea floor -- Part 2
-for (const line of lines) {
-    addLine(line.start, line.end, true);
-}
+    // Add all diagonal lines to sea floor -- Part 2
+    for (const line of lines) {
+        addLine(line.start, line.end, true);
+        await wait(5);
+    }
 
-// Search for line intersections -- Part 2
-intersections = 0;
-for (const row of part2Floor) {
-    const rowIntersections = row.reduce((a, v) => (v > 1 ? a += 1 : a), 0);
-    intersections += rowIntersections;
-}
+    // Search for line intersections -- Part 2
+    intersections = 0;
+    for (const row of part2Floor) {
+        const rowIntersections = row.reduce((a, v) => (v > 1 ? a += 1 : a), 0);
+        intersections += rowIntersections;
+    }
 
-console.log('\n\n=== PART 2 ===');
-console.log(`Intersection Points: ${intersections}`);
-part2FloorCtx.fillText(`Intersection Points: ${intersections}`, 10, 50);
+    console.log('\n\n=== PART 2 ===');
+    console.log(`Intersection Points: ${intersections}`);
+    part2FloorCtx.fillText(`Intersection Points: ${intersections}`, 10, 50);
+})();
 </script>
 </html>
